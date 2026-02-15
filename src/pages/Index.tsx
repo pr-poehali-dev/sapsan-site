@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
 const BOOK_COVER = "https://cdn.poehali.dev/projects/bf7a89a5-8fbb-45b7-9396-502851fe7980/files/19552d03-1c07-4a29-9fda-911c3f599c18.jpg";
@@ -234,71 +235,108 @@ const booksData = [
   },
 ];
 
-const BooksSection = () => (
-  <section id="books" className="vintage-paper py-24">
-    <div className="max-w-5xl mx-auto px-8">
-      <div className="text-center mb-16">
-        <p className="font-handwriting text-2xl text-[var(--ink-faded)] mb-2">~ содержание ~</p>
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-[var(--ink-color)] typewriter-shadow">
-          Книги серии
-        </h2>
-      </div>
+const BooksSection = () => {
+  const [active, setActive] = useState<string | null>(null);
 
-      <div className="space-y-10">
-        {booksData.map((book) => (
-          <div
-            key={book.number}
-            className="bg-[var(--paper-bg)] border border-dashed border-[rgba(100,80,60,0.3)] relative overflow-hidden"
-          >
-            <div className="absolute top-0 left-0 w-1.5 h-full bg-[var(--ink-color)] opacity-60" />
+  const toggle = (id: string) => {
+    setActive(active === id ? null : id);
+  };
 
-            <div className="p-6 md:p-8 pl-8 md:pl-10">
-              <div className="flex items-baseline gap-4 mb-5">
-                <span className="font-display text-5xl md:text-6xl font-bold text-[var(--ink-color)] opacity-20 leading-none">
-                  {book.number}
+  return (
+    <section id="books" className="vintage-paper py-24">
+      <div className="max-w-5xl mx-auto px-8">
+        <div className="text-center mb-16">
+          <p className="font-handwriting text-2xl text-[var(--ink-faded)] mb-2">~ содержание ~</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-[var(--ink-color)] typewriter-shadow">
+            Книги серии
+          </h2>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-10">
+          {booksData.map((book) => (
+            <button
+              key={book.number}
+              onClick={() => toggle(book.number)}
+              className={`group relative px-5 md:px-7 py-3 md:py-4 border transition-all duration-300 text-left ${
+                active === book.number
+                  ? "bg-[var(--ink-color)] border-[var(--ink-color)]"
+                  : "bg-[var(--paper-bg)] border-dashed border-[rgba(100,80,60,0.3)] hover:border-[var(--ink-color)] hover:border-solid"
+              }`}
+            >
+              <span className={`font-display text-sm md:text-base font-bold block transition-colors ${
+                active === book.number ? "text-[var(--paper-bg)]" : "text-[var(--ink-faded)]"
+              }`}>
+                Книга {book.number}
+              </span>
+              <span className={`font-display text-lg md:text-xl font-bold block transition-colors ${
+                active === book.number ? "text-[var(--paper-bg)]" : "text-[var(--ink-color)]"
+              }`}>
+                «{book.title}»
+              </span>
+              {book.parts[0]?.period && (
+                <span className={`font-handwriting text-sm block transition-colors ${
+                  active === book.number ? "text-[rgba(245,240,232,0.6)]" : "text-[var(--ink-blue)]"
+                }`}>
+                  {book.parts.length === 1
+                    ? book.parts[0].period
+                    : book.parts[0].period.split("–")[0] + "–" + book.parts[book.parts.length - 1].period.split("–")[1]} гг.
                 </span>
-                <div>
-                  <h3 className="font-display text-2xl md:text-3xl font-bold text-[var(--ink-color)]">
-                    «{book.title}»
-                  </h3>
-                  {book.parts[0]?.period && (
-                    <p className="font-handwriting text-lg text-[var(--ink-blue)]">
-                      {book.parts.length === 1
-                        ? book.parts[0].period + " гг."
-                        : book.parts[0].period.split("–")[0] + "–" + book.parts[book.parts.length - 1].period.split("–")[1] + " гг."}
-                    </p>
-                  )}
-                </div>
-              </div>
+              )}
+            </button>
+          ))}
+        </div>
 
-              <div className={`grid gap-6 ${book.parts.length > 1 ? "md:grid-cols-" + Math.min(book.parts.length, 3) : ""}`}>
-                {book.parts.map((part, pi) => (
-                  <div key={pi}>
-                    {part.label && (
-                      <p className="font-handwriting text-base text-[var(--ink-blue)] mb-2 border-b border-dotted border-[rgba(100,80,60,0.2)] pb-1">
-                        {part.label} {part.period && <span className="text-[var(--ink-faded)]">({part.period})</span>}
-                      </p>
-                    )}
-                    <div className="space-y-1">
-                      {part.chapters.map((ch, ci) => (
-                        <p key={ci} className="font-serif text-base text-[var(--ink-faded)] flex items-start gap-2">
-                          <span className="text-[var(--ink-color)] opacity-30 text-sm mt-0.5">
-                            <Icon name="Minus" size={12} />
-                          </span>
-                          {ch}
-                        </p>
-                      ))}
-                    </div>
+        <div className="relative min-h-[40px]">
+          {booksData.map((book) => (
+            <div
+              key={book.number}
+              className={`transition-all duration-500 ${
+                active === book.number
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4 absolute inset-0 pointer-events-none"
+              }`}
+            >
+              {active === book.number && (
+                <div className="bg-[var(--paper-bg)] border border-dashed border-[rgba(100,80,60,0.3)] p-6 md:p-10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1.5 h-full bg-[var(--ink-color)] opacity-60" />
+
+                  <div className={`grid gap-8 ${book.parts.length > 1 ? "md:grid-cols-" + Math.min(book.parts.length, 3) : ""}`}>
+                    {book.parts.map((part, pi) => (
+                      <div key={pi}>
+                        {part.label && (
+                          <p className="font-handwriting text-lg text-[var(--ink-blue)] mb-3 border-b border-dotted border-[rgba(100,80,60,0.2)] pb-2">
+                            {part.label}
+                            {part.period && <span className="text-[var(--ink-faded)] ml-2">({part.period})</span>}
+                          </p>
+                        )}
+                        <div className="space-y-2">
+                          {part.chapters.map((ch, ci) => (
+                            <p key={ci} className="font-serif text-base text-[var(--ink-faded)] flex items-start gap-2.5">
+                              <span className="text-[var(--ink-color)] opacity-30 mt-1.5 shrink-0">
+                                <Icon name="Minus" size={12} />
+                              </span>
+                              {ch}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </div>
+              )}
             </div>
-          </div>
-        ))}
+          ))}
+
+          {!active && (
+            <p className="font-handwriting text-xl text-[var(--ink-faded)] text-center py-8 opacity-60">
+              Нажмите на книгу, чтобы увидеть содержание
+            </p>
+          )}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const stores = [
   { name: "Литрес", icon: "BookOpen", url: "#" },
