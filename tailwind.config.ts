@@ -6,10 +6,15 @@ export default {
 		"./pages/**/*.{ts,tsx}",
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./src/**/*.{ts,tsx}"
 	],
 	prefix: "",
 	theme: {
+		fontFamily: {
+			'handwriting': ['Caveat', 'cursive'],
+			'serif': ['Merriweather', 'Georgia', 'serif'],
+			'display': ['Cormorant Garamond', 'serif'],
+		},
 		container: {
 			center: true,
 			padding: '2rem',
