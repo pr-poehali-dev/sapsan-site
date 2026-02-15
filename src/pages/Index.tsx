@@ -177,6 +177,7 @@ const booksData = [
   {
     number: "1",
     title: "Начало",
+    description: "Детство, юность и становление характера. От послевоенного детства в маленьком городке через авиационный техникум и армию — к первым шагам во взрослую жизнь. История о том, как формировался человек, которому предстоит построить империю.",
     parts: [
       {
         label: "Часть I",
@@ -193,6 +194,7 @@ const booksData = [
   {
     number: "2",
     title: "Камаз",
+    description: "Двадцать лет на великой стройке. Набережные Челны, партийная карьера, институт и первый бизнес-опыт. Болгария, бандиты, аферисты, пожар на КАМАЗе и распад СССР — глазами человека, который был в самой гуще событий.",
     parts: [
       {
         label: "Часть I",
@@ -214,6 +216,7 @@ const booksData = [
   {
     number: "3",
     title: "Автобизнес",
+    description: "Главная история серии. Создание одного из крупнейших автохолдингов страны с нуля, его расцвет и стремительная гибель. О том, как строился большой бизнес в новой России — и почему он не выжил.",
     parts: [
       {
         label: "",
@@ -225,6 +228,7 @@ const booksData = [
   {
     number: "4",
     title: "Записки дилетанта",
+    description: "Свободные размышления автора о жизни, людях, стране и времени. Без хронологии и без цензуры — честный взгляд человека, прошедшего путь от рабочего до миллиардера.",
     parts: [
       {
         label: "",
@@ -299,6 +303,12 @@ const BooksSection = () => {
               {active === book.number && (
                 <div className="bg-[var(--paper-bg)] border border-dashed border-[rgba(100,80,60,0.3)] p-6 md:p-10 relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-1.5 h-full bg-[var(--ink-color)] opacity-60" />
+
+                  <p className="font-serif text-lg leading-relaxed text-[var(--ink-color)] mb-8 pl-4 border-l-2 border-[var(--ink-blue)] border-opacity-30">
+                    {book.description}
+                  </p>
+
+                  <p className="font-handwriting text-lg text-[var(--ink-faded)] mb-4 opacity-60">Содержание:</p>
 
                   <div className={`grid gap-8 ${book.parts.length > 1 ? "md:grid-cols-" + Math.min(book.parts.length, 3) : ""}`}>
                     {book.parts.map((part, pi) => (
