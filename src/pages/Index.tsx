@@ -90,28 +90,33 @@ const AboutSection = () => (
         <div className="md:w-2/3 space-y-6">
           <p className="font-serif text-lg leading-relaxed text-[var(--ink-color)]">
             Лихие 90-е. Время, когда рушились империи и создавались состояния.
-            Время, когда вчерашний водитель КАМАЗа мог стать миллиардером,
+            Время, когда вчерашний рабочий КАМАЗа мог стать миллиардером,
             а миллиардер — оказаться за решёткой.
           </p>
           <p className="font-serif text-lg leading-relaxed text-[var(--ink-color)]">
-            «Сапсан или прерванный полёт» — это документальная история
-            о восхождении и падении одного из крупнейших автодилеров России.
-            О людях, которые строили бизнес в эпоху, когда правила
-            писались на ходу, а законы работали избирательно.
+            История о том, как строился миллиардный бизнес с более чем 4000 сотрудниками —
+            и история о том, как закулисные интриги, взятки и кризис разрушили то,
+            о чём многие мечтают, но никогда не смогут достичь.
+          </p>
+          <p className="font-serif text-lg leading-relaxed text-[var(--ink-color)]">
+            Книга-история и книга-урок. Автор рассказывает с самого начала,
+            чтобы читатель понимал, что стоит за каждым решением на пути
+            построения компании с миллиардным оборотом — и за каждой пролитой
+            кровью при её разрушении.
           </p>
           <p className="font-serif text-lg leading-relaxed text-[var(--ink-faded)] italic">
-            Эта книга — не выдумка. Все события основаны
-            на реальных фактах, документах и свидетельствах очевидцев.
+            В этой книге — не глянцевая история, а то, что стоит на самом деле
+            за большим успехом и громким падением.
           </p>
 
-          <div className="flex gap-8 pt-4 border-t border-dashed border-[var(--notebook-margin)]">
+          <div className="flex flex-wrap gap-8 pt-4 border-t border-dashed border-[var(--notebook-margin)]">
             <div className="text-center">
-              <p className="font-display text-3xl font-bold text-[var(--ink-color)]">90-е</p>
-              <p className="font-handwriting text-lg text-[var(--ink-faded)]">эпоха</p>
+              <p className="font-display text-3xl font-bold text-[var(--ink-color)]">4 000+</p>
+              <p className="font-handwriting text-lg text-[var(--ink-faded)]">сотрудников</p>
             </div>
             <div className="text-center">
-              <p className="font-display text-3xl font-bold text-[var(--ink-color)]">350+</p>
-              <p className="font-handwriting text-lg text-[var(--ink-faded)]">страниц</p>
+              <p className="font-display text-3xl font-bold text-[var(--ink-color)]">₽ млрд</p>
+              <p className="font-handwriting text-lg text-[var(--ink-faded)]">оборот</p>
             </div>
             <div className="text-center">
               <p className="font-display text-3xl font-bold text-[var(--ink-color)]">100%</p>
