@@ -8,7 +8,7 @@ const Index = () => {
       <HeroSection />
       <AboutSection />
       <ExcerptsSection />
-      <NextBooksSection />
+      <BooksSection />
       <BuySection />
       <Footer />
     </div>
@@ -172,56 +172,126 @@ const ExcerptsSection = () => (
   </section>
 );
 
-const nextBooks = [
+const booksData = [
   {
-    title: "САПСАН II: Возвращение",
-    status: "В работе",
-    year: "2026",
-    description: "Продолжение истории. Новые герои, новые схемы, новая Россия.",
+    number: "1",
+    title: "Начало",
+    parts: [
+      {
+        label: "Часть I",
+        period: "1951–1970",
+        chapters: ["Яна бисте", "Родители", "Школа", "Авиационный Техникум", "Акробатика", "Книги и Фильмы", "Рассуждения дилетанта"],
+      },
+      {
+        label: "Часть II",
+        period: "1970–1974",
+        chapters: ["Армия", "Севморпуть", "Компрессормаш", "Семья", "Рассуждения дилетанта"],
+      },
+    ],
   },
   {
-    title: "САПСАН III: Наследие",
-    status: "Планируется",
-    year: "2027",
-    description: "Чем закончилась эпоха великих автодилеров и что осталось после них.",
+    number: "2",
+    title: "Камаз",
+    parts: [
+      {
+        label: "Часть I",
+        period: "1974–1993",
+        chapters: ["Челны", "Дети", "КПСС", "Институт", "Карьера", "«Кодла»", "Болгария и Кутаиси", "Камазовские хохмы", "Камаз-люди", "Школа бизнеса"],
+      },
+      {
+        label: "Часть II",
+        period: "1974–1993",
+        chapters: ["Первый автомобиль", "Бандиты и аферисты", "Мнение дилетанта", "Смутные времена", "Спорт и спирт", "Евреи", "Камаз-люди"],
+      },
+      {
+        label: "Часть III",
+        period: "1974–1993",
+        chapters: ["Камаз-люди", "Интрижки и романы", "Культура и спорт", "Пожар", "Вожди СССР", "Рассуждения дилетанта"],
+      },
+    ],
+  },
+  {
+    number: "3",
+    title: "Автобизнес",
+    parts: [
+      {
+        label: "",
+        period: "1993–2013",
+        chapters: ["Создание автохолдинга", "Расцвет автохолдинга", "Гибель автохолдинга", "Жизнь после смерти", "Рассуждения дилетанта"],
+      },
+    ],
+  },
+  {
+    number: "4",
+    title: "Записки дилетанта",
+    parts: [
+      {
+        label: "",
+        period: "",
+        chapters: ["Рассуждения «автора» на разные темы"],
+      },
+    ],
   },
 ];
 
-const NextBooksSection = () => (
-  <section className="vintage-paper py-24">
-    <div className="max-w-4xl mx-auto px-8">
+const BooksSection = () => (
+  <section id="books" className="vintage-paper py-24">
+    <div className="max-w-5xl mx-auto px-8">
       <div className="text-center mb-16">
-        <p className="font-handwriting text-2xl text-[var(--ink-faded)] mb-2">~ продолжение ~</p>
+        <p className="font-handwriting text-2xl text-[var(--ink-faded)] mb-2">~ содержание ~</p>
         <h2 className="font-display text-4xl md:text-5xl font-bold text-[var(--ink-color)] typewriter-shadow">
-          Следующие книги
+          Книги серии
         </h2>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8">
-        {nextBooks.map((book, i) => (
+      <div className="space-y-10">
+        {booksData.map((book) => (
           <div
-            key={i}
-            className="bg-[var(--paper-bg)] p-8 border border-dashed border-[rgba(100,80,60,0.3)] relative"
+            key={book.number}
+            className="bg-[var(--paper-bg)] border border-dashed border-[rgba(100,80,60,0.3)] relative overflow-hidden"
           >
-            <div className="absolute top-4 right-4">
-              <span className="font-handwriting text-sm bg-[var(--ink-color)] text-[var(--paper-bg)] px-3 py-1">
-                {book.status}
-              </span>
-            </div>
+            <div className="absolute top-0 left-0 w-1.5 h-full bg-[var(--ink-color)] opacity-60" />
 
-            <p className="font-handwriting text-lg text-[var(--ink-blue)] mb-2">{book.year}</p>
-            <h3 className="font-display text-2xl font-bold text-[var(--ink-color)] mb-4">
-              {book.title}
-            </h3>
-            <p className="font-serif text-base text-[var(--ink-faded)] leading-relaxed">
-              {book.description}
-            </p>
+            <div className="p-6 md:p-8 pl-8 md:pl-10">
+              <div className="flex items-baseline gap-4 mb-5">
+                <span className="font-display text-5xl md:text-6xl font-bold text-[var(--ink-color)] opacity-20 leading-none">
+                  {book.number}
+                </span>
+                <div>
+                  <h3 className="font-display text-2xl md:text-3xl font-bold text-[var(--ink-color)]">
+                    «{book.title}»
+                  </h3>
+                  {book.parts[0]?.period && (
+                    <p className="font-handwriting text-lg text-[var(--ink-blue)]">
+                      {book.parts.length === 1
+                        ? book.parts[0].period + " гг."
+                        : book.parts[0].period.split("–")[0] + "–" + book.parts[book.parts.length - 1].period.split("–")[1] + " гг."}
+                    </p>
+                  )}
+                </div>
+              </div>
 
-            <div className="mt-6 pt-4 border-t border-dotted border-[rgba(100,80,60,0.2)]">
-              <p className="font-handwriting text-base text-[var(--ink-faded)]">
-                <Icon name="Bell" size={16} className="inline mr-2" />
-                Подпишитесь, чтобы узнать о выходе
-              </p>
+              <div className={`grid gap-6 ${book.parts.length > 1 ? "md:grid-cols-" + Math.min(book.parts.length, 3) : ""}`}>
+                {book.parts.map((part, pi) => (
+                  <div key={pi}>
+                    {part.label && (
+                      <p className="font-handwriting text-base text-[var(--ink-blue)] mb-2 border-b border-dotted border-[rgba(100,80,60,0.2)] pb-1">
+                        {part.label} {part.period && <span className="text-[var(--ink-faded)]">({part.period})</span>}
+                      </p>
+                    )}
+                    <div className="space-y-1">
+                      {part.chapters.map((ch, ci) => (
+                        <p key={ci} className="font-serif text-base text-[var(--ink-faded)] flex items-start gap-2">
+                          <span className="text-[var(--ink-color)] opacity-30 text-sm mt-0.5">
+                            <Icon name="Minus" size={12} />
+                          </span>
+                          {ch}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         ))}
