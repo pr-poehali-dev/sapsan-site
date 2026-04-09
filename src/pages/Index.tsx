@@ -38,13 +38,20 @@ const HeroSection = () => (
           История автодилера
         </p>
 
-        <div className="animate-fade-in-up opacity-0 animate-delay-3">
+        <div className="animate-fade-in-up opacity-0 animate-delay-3 flex flex-wrap gap-4">
           <a
             href="#about"
             className="inline-flex items-center gap-2 bg-[var(--ink-color)] text-[var(--paper-bg)] px-8 py-3 font-serif text-lg hover:bg-[var(--ink-blue)] transition-colors"
           >
             Читать далее
             <Icon name="ChevronDown" size={20} />
+          </a>
+          <a
+            href="#buy"
+            className="inline-flex items-center gap-2 border-2 border-[var(--ink-color)] text-[var(--ink-color)] px-8 py-3 font-serif text-lg hover:bg-[var(--ink-color)] hover:text-[var(--paper-bg)] transition-colors"
+          >
+            Купить книгу
+            <Icon name="BookOpen" size={20} />
           </a>
         </div>
       </div>
@@ -361,7 +368,7 @@ const stores = [
 ];
 
 const BuySection = () => (
-  <section className="bg-[var(--ink-color)] py-24 relative overflow-hidden">
+  <section id="buy" className="bg-[var(--ink-color)] py-24 relative overflow-hidden">
     <div className="absolute inset-0 opacity-5" style={{backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(255,255,255,0.1) 27px, rgba(255,255,255,0.1) 28px)'}} />
 
     <div className="max-w-4xl mx-auto px-8 text-center relative z-10">
