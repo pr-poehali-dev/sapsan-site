@@ -378,7 +378,7 @@ const BuySection = () => (
         Книга доступна в электронном и печатном формате на всех популярных площадках
       </p>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="flex flex-wrap justify-center gap-6">
         {stores.map((store, i) => (
           <a
             key={i}
