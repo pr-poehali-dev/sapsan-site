@@ -362,9 +362,7 @@ const BooksSection = () => {
 
 const stores = [
   { name: "Литрес", icon: "BookOpen", url: "#" },
-  { name: "Ozon", icon: "ShoppingCart", url: "#" },
-  { name: "Wildberries", icon: "Package", url: "#" },
-  { name: "Book24", icon: "BookMarked", url: "#" },
+  { name: "Авито", icon: "ShoppingCart", url: "#" },
 ];
 
 const BuySection = () => (
